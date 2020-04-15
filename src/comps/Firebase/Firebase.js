@@ -2,18 +2,18 @@ import app from 'firebase/app';
 import 'firebase/auth'
 import 'firebase/firestore'
 import React from 'react' 
+import axios from 'axios'
 export const AppContext = React.createContext()
 
     const config = {
-      // your config info here
-      // apiKey: ,
-      // authDomain: ,
-      // databaseURL: ,
-      // projectId: ,
-      // storageBucket: ,
-      // messagingSenderId: ,
-      // appId:,
-      // measurementId: 
+      apiKey: "AIzaSyB1Bx1lE918l6rzbn1jbaUYm5SoeUGj514",
+      authDomain: "app-predict.firebaseapp.com",
+      databaseURL: "https://app-predict.firebaseio.com",
+      projectId: "app-predict",
+      storageBucket: "app-predict.appspot.com",
+      messagingSenderId: "793462500548",
+      appId: "1:793462500548:web:2d3acab38914c47be42d91",
+      measurementId: "G-NF8J2W7W50"
     };
    
     class Firebase extends React.Component {
@@ -94,6 +94,17 @@ export const AppContext = React.createContext()
         }
       async componentDidMount(){
         console.log('here I am')
+        let form_data = {
+          id:'1',
+          track_name:'this is a test'
+        }
+        const resp =  await axios.get('http://localhost:8000/appstore/8/')
+        // const post =  await axios.post('http://localhost:8000/appstore/')
+        const predict =  await axios.post('http://localhost:8000/azure/',form_data)
+        console.log('data from django API',resp)
+        console.log('from Azure',JSON.parse(predict.data))
+        // console.log('post', post)
+
       }
         render(){
           return(

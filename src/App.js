@@ -1,24 +1,27 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './index.css'
 import {withFirebase} from './comps/Firebase'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Analyze from './comps/Views/Analyze';
 function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {props.context.test}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Router>
+        <Switch>
+          <Route path='/Analyze'>
+            <Analyze/>
+          </Route>
+          <Route path='/'>
+            
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
