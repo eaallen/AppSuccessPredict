@@ -93,7 +93,7 @@ export const AppContext = React.createContext()
           this.setState({...this.state, loading:true})
         }
       async componentDidMount(){
-      // STUFF YOU DO RIGHT AT THE BEGINING 
+        console.log('here I am')
       }
         render(){
           return(
