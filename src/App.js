@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import Analyze from './comps/Views/Analyze';
+import Home from './comps/Views/Home';
 function App(props) {
   return (
     <div>
@@ -18,7 +19,7 @@ function App(props) {
             <Analyze/>
           </Route>
           <Route path='/'>
-            
+            <Home></Home>
           </Route>
         </Switch>
       </Router>

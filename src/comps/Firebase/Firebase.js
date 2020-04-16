@@ -93,17 +93,17 @@ export const AppContext = React.createContext()
           this.setState({...this.state, loading:true})
         }
       async componentDidMount(){
-        console.log('here I am')
-        let form_data = {
-          id:'1',
-          track_name:'this is a test'
-        }
-        const resp =  await axios.get('http://localhost:8000/appstore/8/')
-        // const post =  await axios.post('http://localhost:8000/appstore/')
-        const predict =  await axios.post('http://localhost:8000/azure/',form_data)
-        console.log('data from django API',resp)
-        console.log('from Azure',JSON.parse(predict.data))
-        // console.log('post', post)
+        // console.log('here I am')
+        // let form_data = {
+        //   id:'1',
+        //   track_name:'this is a test'
+        // }
+        // const resp =  await axios.get('http://localhost:8000/appstore/8/')
+        // // const post =  await axios.post('http://localhost:8000/appstore/')
+        // const predict =  await axios.post('http://localhost:8000/azure/',form_data)
+        // console.log('data from django API',resp)
+        // console.log('from Azure',JSON.parse(predict.data))
+        // // console.log('post', post)
 
       }
         render(){

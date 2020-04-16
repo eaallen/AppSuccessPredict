@@ -7,7 +7,7 @@ function HomeBase(props) {
     return (
         <div className="text-light bg-dark">
 
-            <div className='text-center jumbotron' style={{backgroundColor:'smokewhite',backgroundImage:'url("/bg.jpg")',paddingTop:'15.9rem',paddingBottom:'15.9rem'}}>
+            <div className='text-center jumbotron' style={{backgroundColor:'smokewhite',backgroundImage:'url("/logo512.png")',paddingTop:'15.9rem',paddingBottom:'15.9rem'}}>
                 <h1 className="text-light">
                     {user?
                     <>
@@ -22,36 +22,39 @@ function HomeBase(props) {
                 
 
             </div>
-
-            <Row  className='center-row'>
+            <div className='text-center'>
+                <h1>Founders</h1>
+            </div>
+            <Row  className='text-center' noGutters>
+                
                 <Col>
+                    <img className='rounded-circle' src='https://media-exp1.licdn.com/dms/image/C4E03AQHqLO0sxiIZig/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=cG2oarCyVmFRH5dMK7gUyXkp1Hcmr32YxQvhw-LwYis' alt=''/>
+                    
+                    
                     <h1>
-                        Research Campaigns                        
+                        Elijah Allen                       
                     </h1>
-                    <Container>
-                    <p>
-                    Get a better understanding of the most and least successful campaigns on record. Use the pre-made search options to 
-                    quickly see visual over views and details about outliers. Use the data provided to execute a successful GoFundMe campaign.  
-                    </p>
-                    </Container>
+                    
                 </Col>
                 <Col>
+                    <img className='rounded-circle' src='https://media-exp1.licdn.com/dms/image/C4E03AQHngYkrgupNkw/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=xN-S4PGKD1k5QEN75cm7V5nA3fDniFLEYbctUJ_gEj8'/>
                     <h1>
-                        Predict
+                        Matthew Brown
                     </h1>
-                    <p>
-                    Learn how a future GoFundME campaign might fair when published. Our Machine Learning algorithms take the parameters
-                     provided and return a predicted amount of donors and the total funds that could be raised.                     
-                    </p>
+                    
                 </Col>
                 <Col>
+                    <img className='rounded-circle' src='https://media-exp1.licdn.com/dms/image/C4E03AQElDmqS5ExxnA/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=4_tbFqcDMnT6QkNsV85gqHUCs6bKzHm0J7Bwn7jLVG0'/>
                     <h1>
-                      SandBox SQL
+                      Micheal Chadwick
                     </h1>
-                    <p>
-                    Explore the data with an unlimited amount of possibilities. SandBox SQL gives you the freedom of writing SQL with out worrying about UPDATE, DROP, etc.
-                    This is possible because SandBox SQL was purposely designed for data viewing only.                     
-                    </p>
+                    
+                </Col>
+                <Col>
+                    <img className='rounded-circle' src='https://media-exp1.licdn.com/dms/image/C5603AQEuw8mkXneMww/profile-displayphoto-shrink_200_200/0?e=1592438400&v=beta&t=fuRtXQr_CiR-2ElalSDZnHdP2ayXzwZjzGDxTYzd_VQ'/>
+                    <h1>
+                        Connor Merkley
+                    </h1>
                 </Col>
             </Row>    
    
