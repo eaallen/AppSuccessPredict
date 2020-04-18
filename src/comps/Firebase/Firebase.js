@@ -35,6 +35,7 @@ export const AppContext = React.createContext()
             getOneRecord:this.getOneRecord,
             checkState: this.checkState,
             user: this.user,
+            addData: this.addData,
           }
           this.state = {
             test:'this is comming from the firbase context provider',
@@ -92,12 +93,24 @@ export const AppContext = React.createContext()
         loader=()=>{          
           this.setState({...this.state, loading:true})
         }
+
+        /*******************************************************************
+         * METHODS SPECIFIC 
+         * TO THIS PROJECT
+         ****************************************************************/
+        
+        addData = async(formData) =>{
+          console.log('IIIIIMMMMM')
+          const post =  await axios.post('http://localhost:8000/appstore/10000000/',formData)
+          console.log('--->',post)
+          console.log('--->',formData)
+        }
+
+
+
+
+
       async componentDidMount(){
-        // console.log('here I am')
-        // let form_data = {
-        //   id:'1',
-        //   track_name:'this is a test'
-        // }
         // const resp =  await axios.get('http://localhost:8000/appstore/8/')
         // // const post =  await axios.post('http://localhost:8000/appstore/')
         // const predict =  await axios.post('http://localhost:8000/azure/',form_data)

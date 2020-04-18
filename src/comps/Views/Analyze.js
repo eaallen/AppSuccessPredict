@@ -13,7 +13,7 @@ export default function Analyze(props) {
                     <bs.Col md={.5} >
                     <>
                         <bs.Button variant="dark" onClick={() => setModalShow(true)}>
-                        About Predict
+                          About Predict
                         </bs.Button>
   
                         <MyVerticallyCenteredModal
