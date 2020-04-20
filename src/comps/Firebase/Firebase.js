@@ -36,10 +36,13 @@ export const AppContext = React.createContext()
             checkState: this.checkState,
             user: this.user,
             addData: this.addData,
+            azure: this.azure,
           }
           this.state = {
             test:'this is comming from the firbase context provider',
             loading: null,
+            db_resp: null,
+            azure_resp:null,
             // user: null
           }
           console.log('here')
@@ -101,9 +104,23 @@ export const AppContext = React.createContext()
         
         addData = async(formData) =>{
           console.log('IIIIIMMMMM')
-          const post =  await axios.post('http://localhost:8000/appstore/10000000/',formData)
-          console.log('--->',post)
-          console.log('--->',formData)
+          const post =  await axios.post('https://app-predict.azurewebsites.net/appstore/284882215/',formData)
+          let resp = post
+          console.log('--->',resp)
+          this.setState({...this.state, db_resp:resp.statusText})
+        }
+        azure = async(data) =>{
+          // const post =  await axios.post('https://app-predict.azurewebsites.net/azure/',data)
+          const post =  await axios.post('https://app-predict.azurewebsites.net/azure/',data)
+          let resp = JSON.parse(post.data)
+          console.log('---->',resp)
+          console.log('---->',resp.Results.output1.value.Values[0])
+          if(resp.Results.output1.value.Values[0][0]){
+            this.setState({...this.state, azure_resp:resp.Results.output1.value.Values[0][0]})
+          }else{
+            this.setState({...this.state, azure_resp:'ERROR'})
+          }
+          
         }
 
 
@@ -111,12 +128,7 @@ export const AppContext = React.createContext()
 
 
       async componentDidMount(){
-        // const resp =  await axios.get('http://localhost:8000/appstore/8/')
-        // // const post =  await axios.post('http://localhost:8000/appstore/')
-        // const predict =  await axios.post('http://localhost:8000/azure/',form_data)
-        // console.log('data from django API',resp)
-        // console.log('from Azure',JSON.parse(predict.data))
-        // // console.log('post', post)
+        
 
       }
         render(){

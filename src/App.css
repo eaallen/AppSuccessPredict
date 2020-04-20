@@ -48,6 +48,19 @@
   text-decoration: underline;
   cursor: pointer;
 }
+.bg{
+  background-image: url("/bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+#landing{
+  padding-top: 20rem;
+  padding-bottom: 20rem;
+}
+.head-text{
+  color: rgb(1, 167, 185);
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

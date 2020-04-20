@@ -24,9 +24,9 @@ const AnalysisController = props => {
                 size_bytes: '',
                 price: '',
                 description: '',
-                total_rating_count: 'TRUE',
-                user_rating: 'TRUE',
-                genre:'Games'
+                total_rating_count: '',
+                user_rating: '',
+                genre:''
             }}
 
             validateOnChange={false}
@@ -73,11 +73,10 @@ const InputForm = props => (
         <Input title="Size in Bytes" name="size_bytes" type="text" />
         <Input title="Price" name="price" type="text" />
         <Input title="Description" name="description" type="text" />
-        <Option title="Amount of Ratings" name="total_rating_count" type="text" />
-        <Option Input title="Average Rating" name="user_rating" type="dropdown" />
+        <Input title="Amount of Ratings" name="total_rating_count" type="text" />
+        <Input Input title="Average Rating" name="user_rating" type="dropdown" />
         <First Input title="Genre" name="genre" type="dropdown" />
-        <bs.Button type='submit' variant="dark" onClick={e=>handleSubmit(e,props.func,props.form.values)}>Submit </bs.Button>
-
+        <bs.Button type='submit' variant="dark" onClick={e=>handleSubmit(e,props.func,props.form.values)}>Submit </bs.Button> <h3 className='text-center'>{props.func.db_resp}</h3>
     </Form>    
 )
 

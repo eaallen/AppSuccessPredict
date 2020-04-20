@@ -20,13 +20,15 @@ const AnalysisController = props => {
 
             func={props.func}
             initialValues={{
-                category_id: '1',
-                goal_usd: '',
-                title: '',
+                track_name: '',
+                size_bytes: '',
+                price: '0',
                 description: '',
-                has_beneficiary: 'TRUE',
-                visible_in_search: 'TRUE',
-                is_charity:'TRUE'
+                sup_devices_num: '1',
+                lang_num: '1',
+                cont_rating:'4+',
+                prime_genre:'Games',
+                vpp_lic:'1',
             }}
 
             validateOnChange={false}
@@ -34,29 +36,42 @@ const AnalysisController = props => {
             validate={values => {
                 const errors = {}
                 
-                    if(values.title === ''){
-                        errors.name = 'Please fill out input 1'
+                    if(values.track_name === ''){
+                        errors.track_name = 'Please fill out'
                     }
-                    if(values.input2 === ''){
-                        errors.name = 'Please fill out input 2'
+                    if(values.size_bytes === ''){
+                        errors.size_bytes = 'Please fill out'
                     }
-                    if(values.input3 === ''){
-                        errors.name = 'Please fill out input 3'
+                    if(values.price === ''){
+                        errors.price = 'Please fill out'
                     }
-                    if(values.input4 === ''){
-                        errors.name = 'Please fill out input 4'
+                    if(values.description === ''){
+                        errors.description = 'Please fill out'
                     }
-                    if(values.input5 === ''){
-                        errors.name = 'Please fill out input 5'
+                    if(values.sup_devices_num === ''){
+                        errors.sup_devices_num = 'Please fill out'
                     }
-                    if(values.input6 === ''){
-                        errors.name = 'Please fill out input 6'
+                    if(values.lang_num === ''){
+                        errors.lang_num = 'Please fill out'
+                    }
+                    if(values.cont_rating === ''){
+                        errors.cont_rating = 'Please fill out'
+                    }
+                    if(values.prime_genre === ''){
+                        errors.prime_genre = 'Please fill out'
+                    }
+                    if(values.vpp_lic === ''){
+                        errors.vpp_lic = 'Please fill out'
                     }
                 
                 
                 return errors
             }}
             onSubmit={async (values, actions) => {
+                const data = Object.values(values)
+                console.log('()()()',data)
+                await props.func.azure(data)
+            
             }}
         >
         {form => (
@@ -69,21 +84,55 @@ const AnalysisController = props => {
 
 const InputForm = props => (    
     <Form>
-        <First title="Category" name="category_id" type="text" />
-        <Input title="Goal in Dollars" name="goal_usd" type="text" />
-        <Input title="Title" name="title" type="text" />
-        <Input title="Description" name="description" type="text" />
-        <Option title="Has a Beneficiary" name="has_beneficiary" type="text" />
-        <Option Input title="Visible in Search" name="visible_in_search" type="dropdown" />
-        <Option Input title="Is Charity:" name="is_charity" type="dropdown" />
-        <bs.Button type='submit' variant="dark" onClick={e=>handleSubmit(e,props.func,Object.values(props.form.values))}>Predict </bs.Button>
-
+        <bs.Container>
+            <bs.Row>
+                <bs.Col>
+                    <Input title="App Title" name="track_name" type="text" />
+                </bs.Col>
+            </bs.Row>
+            <bs.Row>
+                <bs.Col>
+                    <Input title="Size in Bytes" name="size_bytes" type="number" />
+                </bs.Col>
+                <bs.Col>
+                    <Input title="Price" name="price" type="text" />
+                </bs.Col>
+            </bs.Row>
+            <bs.Row>
+                <bs.Col>
+                    <Input title="Description" name="description" type="text" />
+                    <Input title="Number of Supported Devices" name="sup_devices_num" type="number" />
+                    <Input Input title="Number of Supported Languages" name="lang_num" type="number" />
+                </bs.Col>
+            </bs.Row>
+            <bs.Row>
+                <bs.Col>
+                    <First Input title="Genre" name="prime_genre" type="dropdown" />
+                </bs.Col>
+                <bs.Col>
+                    <Second Input title="Content Rating" name="cont_rating" type="dropdown" />
+                </bs.Col>
+                <bs.Col>
+                    <Option Input title="VPP License" name="vpp_lic" type="dropdown" />
+                </bs.Col>
+                </bs.Row>
+            <bs.Row>
+                <bs.Col>
+                    <bs.Button type='submit' variant="dark" >Submit </bs.Button>
+                </bs.Col>
+            </bs.Row>
+        </bs.Container>     
     </Form>    
 )
 
 const handleSubmit = async(e,func,formData) =>{
     e.preventDefault()
-    
+    // console.log('formdata',formData)
+    const data = Object.values(formData)
+    console.log('()()()',data)
+    await func.azure(data)
+
+
 }
 
 const Input = (props) => (
@@ -113,8 +162,29 @@ const Option = (props) => (
                 {...rProps.field}
                 as='select'
             >
-                <option value="TRUE">Yes</option>
-                <option value="FALSE">No</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </bs.Form.Control>
+            {rProps.meta.touched && rProps.meta.error &&
+                <div className="text-danger">{rProps.meta.error}</div>
+            }
+        </bs.Form.Group>
+    )}</Field>
+)
+const Second = (props) => (
+    <Field name={props.name}>{rProps => (
+        <bs.Form.Group>
+           <bs.Form.Label>{props.title}</bs.Form.Label>
+            <bs.Form.Control
+                disabled={props.disabled}
+                type={props.type}
+                placeholder={props.title}
+                {...rProps.field}
+                as='select'
+            >
+                <option value="4+">4+</option>
+                <option value="12+">12+</option>
+                <option value="17+">17+</option>
             </bs.Form.Control>
             {rProps.meta.touched && rProps.meta.error &&
                 <div className="text-danger">{rProps.meta.error}</div>
@@ -133,23 +203,28 @@ const First = (props) =>(
                 {...rProps.field}
                 as='select'
             >
-                <option value="1">Accidents & Emergencies</option>
-                <option value="2">Animals & Pets</option>
-                <option value="3">Babies Kids & Family</option>
-                <option value="4">Business & Entrepreneurs</option>
-                <option value="5">Celebrations & Events</option>
-                <option value="6">Community & Neighbors</option>
-                <option value="7">Creative Arts Music & Film</option>
-                <option value="8">Dreams Hopes & Wishes</option>
-                <option value="9">Education & Learning</option>
-                <option value="10">Funerals & Memorials</option>
-                <option value="11">Medical Illness & Healing</option>
-                <option value="12">Missions Faith & Church</option>
-                <option value="13">Other</option>
-                <option value="14">Sports Teams & Clubs</option>
-                <option value="15">Travel & Adventure</option>
-                <option value="16">Volunteer & Service</option>
-                <option value="17">Weddings & Honeymoons</option>
+                <option value="Games">Games</option>
+                <option value="Education">Education</option>
+                <option value="Reference">Reference</option>
+                <option value="Social Networking">Social Networking</option>
+                <option value="Business">Business</option>
+                <option value="Food & Drink">Food & Drink</option>
+                <option value="Sports">Sports</option>
+                <option value="Catalogs">Catalogs</option>
+                <option value="Weather">Weather</option>
+                <option value="Music">Music</option>
+                <option value="Book">Book</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Medical">Medical</option>
+                <option value="Utilities">Utilities</option>
+                <option value="Travel">Travel</option>
+                <option value="Navigation">Navigation</option>
+                <option value="Photo & Video">Photo & Video</option>
+                <option value="Health & Fitness">Health & Fitness</option>
+                <option value="Productivity">Productivity</option>
+                <option value="News">News</option>
+                <option value="Lifestyle">Lifestyle</option>
+                <option value="Shopping">Shopping</option>
             </bs.Form.Control>
             {rProps.meta.touched && rProps.meta.error &&
                 <div className="text-danger">{rProps.meta.error}</div>
@@ -158,4 +233,3 @@ const First = (props) =>(
     )}</Field>
 
 )
-

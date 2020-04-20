@@ -9,7 +9,7 @@ function HomeBase(props) {
             <div className='header'>
                 <Row>
                     <Col >
-                    <a href="#landing"><h4>App Predict</h4></a>
+                    <a href="#landing" className='head-text'><h4>App Predict</h4></a>
                     </Col>
                     <Col></Col>
                     <Col></Col>
@@ -18,35 +18,30 @@ function HomeBase(props) {
                     <Col className='text-right'>
                     </Col>
                     <Col className='text-right'>
-                        <a href="#calc"><h5 className='head-item'>Calculator</h5></a>
+                        <a href="#calc" className='head-text'><h5 className='head-item'>Calculator</h5></a>
                     </Col>
                     <Col className='text-right'>
-                        <a href="#founders"><h5 className='head-item'>Founders</h5></a>
+                        <a href="#founders" className='head-text'><h5 className='head-item'>Founders</h5></a>
                     </Col>
                     <Col className='text-right'>
-                        <a href="#data"><h5 className='head-item'>Add Data</h5></a>
+                        <a href="#data" className='head-text'><h5 className='head-item'>Add Data</h5></a>
                     </Col>
                 </Row>
             </div>
-            <div id='landing' className='text-center bg-light ' style={{backgroundColor:'smokewhite',}}>
-                <Row>
-                    <Col className='text-dark paddingLR'>                        
-                        <h1  className='paddingLR'>Make the best App</h1>
-                        <img src='/logo512.png'/>
-                    </Col>
-                    <Col>
-                    </Col>
-                </Row>
-
+            <div id='landing' className='text-center text-dark bg' style={{backgroundColor:'smokewhite'}}>
+                <h1>Know before you Go</h1>
+                <h4>Predict the success of your application before you deploy</h4>
             </div>
-            <div id='calc'>   
-            <h1  className='paddingLR text-center'>
-                Know your success before you deploy
-            </h1>
+            <div id='calc'>  
+            <div className='paddingLR text-center'> 
+                <h1>
+                    Know your success before you deploy
+                </h1>
+                <h4>On a scale of 1 to 15</h4>
+                <h6>(15 being extreamly succesful)</h6>
+            </div>
             <br/>
-            <h3 className='text-center'>
-                Predict the number of downloads
-            </h3> 
+            
             <br/>
                 <Row noGutters>
                     <Col>
@@ -54,9 +49,10 @@ function HomeBase(props) {
                     </Col>
                     <Col>
                         <PredictForm func={props.context}/>
+                        <h5 className='text-center'>Predicted Score:</h5><h1  className='text-center'> {props.context.azure_resp}</h1>
                     </Col>
                     <Col>
-                    
+                        
                     </Col>
                 </Row>
                 
